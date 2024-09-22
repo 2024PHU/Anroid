@@ -24,6 +24,13 @@ class SignInUpActivity : AppCompatActivity() {
             else -> SignInFragment()  // 기본값
         }
 
+        // 엑티비티 이름 설정
+        when (fragmentType) {
+            "signIn" -> binding.activityName.text = "로그인"
+            "signUp" -> binding.activityName.text = "회원가입"
+            else -> binding.activityName.text = "로그인"
+        }
+
         // 프래그먼트 교체
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, fragment)
