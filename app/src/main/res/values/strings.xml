@@ -16,6 +16,12 @@
     <string name="name">이름</string>
     <string name="age">나이</string>
     <string name="phone_number">전화번호</string>
+    <string name="part">파트</string>
+    <string name="sex">성별</string>
+    <string name="male">남성</string>
+    <string name="female">여성</string>
+    <string name="trainer">트레이너</string>
+    <string name="user">회원</string>
 
 
 </resources>
