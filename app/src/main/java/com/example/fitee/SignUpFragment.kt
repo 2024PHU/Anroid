@@ -1,59 +1,72 @@
 package com.example.fitee
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import com.example.fitee.databinding.FragmentSignUpBinding
+import com.example.fitee.signUp.model.SignUpModel
+import com.example.fitee.signUp.viewmodel.SignUpViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SignUpFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SignUpFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private lateinit var binding : FragmentSignUpBinding
+    private lateinit var viewModel : SignUpViewModel
+    private lateinit var signUpModel: SignUpModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up, container, false)
+       binding = FragmentSignUpBinding.inflate(inflater, container, false)
+
+        setupUI(binding.root)
+        observeViewModel()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignUpFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignUpFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private fun setupUI(view: View) {
+        //Viewmodel선언
+        viewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
+        // View 초기화 및 버튼 클릭 리스너 설정
+        binding.signUpBtn.setOnClickListener {
+            val signUpModel = createSignUpModelFromInput(view)
+            if (signUpModel != null) {
+                viewModel.postSignUp(signUpModel)
+            } else {
+                Toast.makeText(requireContext(), "입력을 확인해주세요.", Toast.LENGTH_SHORT).show()
             }
+        }
     }
+
+    private fun createSignUpModelFromInput(view: View): SignUpModel? {
+        // EditText에서 값 가져오기
+        val email = binding.editEmail.text.toString()
+        val password = binding.editPassword.text.toString()
+        val name = binding.editName.text.toString()
+        val age = binding.editAge.text.toString().toIntOrNull() ?: return null
+        val tel = binding.editTel.text.toString()
+        val gender = "MALE"
+        val part = "TRAINER"
+
+        return SignUpModel(email, password, name, age, gender, tel, part)
+    }
+
+    private fun observeViewModel() {
+        //Viewmodel선언
+        viewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
+        viewModel.signUpResult.observe(viewLifecycleOwner) { result ->
+            result.onSuccess {
+                Toast.makeText(requireContext(), "회원가입 성공", Toast.LENGTH_SHORT).show()
+            }.onFailure { e ->
+                Toast.makeText(requireContext(), "회원가입 실패: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
 }

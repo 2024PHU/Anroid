@@ -21,6 +21,7 @@
           android:textColor="@color/gray"/>
 
       <EditText
+          android:id="@+id/editEmail"
           android:layout_width="match_parent"
           android:layout_height="40dp"
           android:layout_marginStart="20dp"
@@ -37,6 +38,7 @@
           android:textColor="@color/gray"/>
 
       <EditText
+          android:id="@+id/editPassword"
           android:layout_width="match_parent"
           android:layout_height="40dp"
           android:layout_marginStart="20dp"
@@ -54,6 +56,7 @@
           android:textColor="@color/gray"/>
 
       <EditText
+          android:id="@+id/editName"
           android:layout_width="match_parent"
           android:layout_height="40dp"
           android:layout_marginStart="20dp"
@@ -71,6 +74,7 @@
           android:textColor="@color/gray"/>
 
       <EditText
+          android:id="@+id/editAge"
           android:layout_width="match_parent"
           android:layout_height="40dp"
           android:layout_marginStart="20dp"
@@ -88,6 +92,7 @@
           android:textColor="@color/gray"/>
 
       <EditText
+          android:id="@+id/editTel"
           android:layout_width="match_parent"
           android:layout_height="40dp"
           android:layout_marginStart="20dp"
@@ -119,6 +124,7 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/maleBtn"
             android:layout_width="116dp"
             android:layout_height="40dp"
             android:background="@drawable/part_selector_button"
@@ -128,6 +134,7 @@
             android:layout_marginRight="40dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/femaleBtn"
             android:layout_width="116dp"
             android:layout_height="40dp"
             android:text="@string/female"
@@ -158,6 +165,7 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/trainerBtn"
             android:layout_width="116dp"
             android:layout_height="40dp"
             android:background="@drawable/part_selector_button"
@@ -167,6 +175,7 @@
             android:layout_marginRight="40dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/userBtn"
             android:layout_width="116dp"
             android:layout_height="40dp"
             android:text="@string/user"
@@ -176,6 +185,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signUpBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
