@@ -1,5 +1,6 @@
 package com.example.fitee
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -62,11 +63,24 @@ class SignUpFragment : Fragment() {
         viewModel.signUpResult.observe(viewLifecycleOwner) { result ->
             result.onSuccess {
                 Toast.makeText(requireContext(), "회원가입 성공", Toast.LENGTH_SHORT).show()
+                navigateToMainActivity()
             }.onFailure { e ->
                 Toast.makeText(requireContext(), "회원가입 실패: ${e.message}", Toast.LENGTH_SHORT).show()
+                Log.d("SignFragment,",e.toString())
             }
         }
+
+
     }
+
+    //메인엑티비티로 이동 함수
+    private fun navigateToMainActivity() {
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        startActivity(intent)
+        activity?.finish() // 이전 액티비티 종료
+    }
+
+
 
 
 }

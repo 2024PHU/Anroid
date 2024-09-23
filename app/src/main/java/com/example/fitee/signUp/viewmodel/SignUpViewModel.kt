@@ -13,6 +13,7 @@ class SignUpViewModel : ViewModel() {
 
     private val _signUpResult = MutableLiveData<Result<Unit>>()
     val signUpResult: LiveData<Result<Unit>> = _signUpResult
+
     private val repository = SignUpRepository()
 
     fun postSignUp(signUpModel: SignUpModel) {
@@ -32,7 +33,7 @@ class SignUpViewModel : ViewModel() {
     }
 
     private fun validateSignUpModel(model: SignUpModel): Boolean {
-        // 유효성 검사 로직 예시
+        // 유효성 검사 로직
         return model.email.isNotBlank() &&
                 model.password.isNotBlank() &&
                 model.name.isNotBlank() &&
