@@ -9,5 +9,5 @@ interface SignUpApi {
     @POST("sign-in")
     suspend fun postSignIn(
         @Body signUpModel : SignUpModel
-    ) : Unit
+    )
 }

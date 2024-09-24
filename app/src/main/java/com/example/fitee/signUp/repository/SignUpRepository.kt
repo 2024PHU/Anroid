@@ -7,8 +7,8 @@ import com.example.fitee.signUp.model.SignUpModel
 class SignUpRepository : SignUpApi {
     private val retrofitInstance = SignUpRetrofitWork.getInstance().create(SignUpApi::class.java)
 
-    override suspend fun postSignIn(signUpModel: SignUpModel): Unit {
-       return retrofitInstance.postSignIn(signUpModel)
+    override suspend fun postSignIn(signUpModel: SignUpModel){
+        retrofitInstance.postSignIn(signUpModel)
     }
 
 }
