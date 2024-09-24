@@ -24,12 +24,24 @@ class SignUpFragment : Fragment() {
     ): View? {
        binding = FragmentSignUpBinding.inflate(inflater, container, false)
 
+        //회원가입 retrofitwork
         setupUI(binding.root)
+
+        //viewmodel observe
         observeViewModel()
+
+        // 버튼 selected 이벤트
+        setupToggleButtons(
+            binding.trainerBtn to binding.userBtn,
+            binding.userBtn to binding.trainerBtn,
+            binding.maleBtn to binding.femaleBtn,
+            binding.femaleBtn to binding.maleBtn
+        )
 
         return binding.root
     }
 
+    //회원가입 retrofitwork
     private fun setupUI(view: View) {
         //Viewmodel선언
         viewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
@@ -44,6 +56,7 @@ class SignUpFragment : Fragment() {
         }
     }
 
+    //model에 값 넣는 함수
     private fun createSignUpModelFromInput(view: View): SignUpModel? {
         // EditText에서 값 가져오기
         val email = binding.editEmail.text.toString()
@@ -51,12 +64,17 @@ class SignUpFragment : Fragment() {
         val name = binding.editName.text.toString()
         val age = binding.editAge.text.toString().toIntOrNull() ?: return null
         val tel = binding.editTel.text.toString()
-        val gender = "MALE"
-        val part = "TRAINER"
+        val gender = if(binding.maleBtn.isSelected){
+            "MALE"
+        }else {"FEMALE"}
+        val part = if(binding.trainerBtn.isSelected){
+            "TRAINER"
+        }else {"MEMBER"}
 
         return SignUpModel(email, password, name, age, gender, tel, part)
     }
 
+    //viewmodel observe 함수
     private fun observeViewModel() {
         //Viewmodel선언
         viewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
@@ -66,7 +84,6 @@ class SignUpFragment : Fragment() {
                 navigateToMainActivity()
             }.onFailure { e ->
                 Toast.makeText(requireContext(), "회원가입 실패: ${e.message}", Toast.LENGTH_SHORT).show()
-                Log.d("SignFragment,",e.toString())
             }
         }
 
@@ -78,6 +95,16 @@ class SignUpFragment : Fragment() {
         val intent = Intent(requireContext(), MainActivity::class.java)
         startActivity(intent)
         activity?.finish() // 이전 액티비티 종료
+    }
+
+    //버튼 selected 함수
+    private fun setupToggleButtons(vararg buttons: Pair<View, View>) {
+        buttons.forEach { (button, otherButton) ->
+            button.setOnClickListener {
+                button.isSelected = !button.isSelected
+                otherButton.isSelected = false
+            }
+        }
     }
 
 

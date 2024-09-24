@@ -16,6 +16,7 @@ class SignUpViewModel : ViewModel() {
 
     private val repository = SignUpRepository()
 
+    //sign_Up retrofit
     fun postSignUp(signUpModel: SignUpModel) {
         if (!validateSignUpModel(signUpModel)) {
             _signUpResult.value = Result.failure(Exception("입력값이 올바르지 않습니다."))
@@ -32,13 +33,13 @@ class SignUpViewModel : ViewModel() {
         }
     }
 
+    // 유효성 검사 로직
     private fun validateSignUpModel(model: SignUpModel): Boolean {
-        // 유효성 검사 로직
         return model.email.isNotBlank() &&
                 model.password.isNotBlank() &&
                 model.name.isNotBlank() &&
                 model.age > 0 &&
-                model.tel.isNotBlank()
+                model.tel.length == 11
     }
 
 }
