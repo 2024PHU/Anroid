@@ -1,9 +1,9 @@
-package com.example.fitee
+package com.example.fitee.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
+import com.example.fitee.R
 import com.example.fitee.databinding.ActivitySignInUpBinding
 
 class SignInUpActivity : AppCompatActivity() {

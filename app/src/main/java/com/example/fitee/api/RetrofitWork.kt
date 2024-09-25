@@ -1,11 +1,11 @@
-package com.example.fitee.signUp.api
+package com.example.fitee.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object SignUpRetrofitWork {
+object RetrofitWork {
     val BASE_URL = "https://fitee.site/"
 
     private val okHttpClient: OkHttpClient by lazy {

@@ -1,9 +1,12 @@
-package com.example.fitee
+package com.example.fitee.view
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.bumptech.glide.Glide
+import com.example.fitee.R
 import com.example.fitee.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +17,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val intent = Intent(this,SignInUpActivity::class.java)
+        val intent = Intent(this, SignInUpActivity::class.java)
+
 
         //glide 이미지 적용
         Glide.with(this).load(R.drawable.mic_animaition).into(binding.gifImage)

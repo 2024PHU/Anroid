@@ -1,11 +1,11 @@
-package com.example.fitee.signUp.viewmodel
+package com.example.fitee.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.fitee.signUp.model.SignUpModel
-import com.example.fitee.signUp.repository.SignUpRepository
+import com.example.fitee.dto.SignUpModel
+import com.example.fitee.repository.SignUpRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -33,7 +33,7 @@ class SignUpViewModel : ViewModel() {
         }
     }
 
-    // 유효성 검사 로직
+    // 회원가입 유효성 검사 로직
     private fun validateSignUpModel(model: SignUpModel): Boolean {
         return model.email.isNotBlank() &&
                 model.password.isNotBlank() &&

@@ -1,8 +1,7 @@
-package com.example.fitee
+package com.example.fitee.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.fitee.databinding.FragmentSignUpBinding
-import com.example.fitee.signUp.model.SignUpModel
-import com.example.fitee.signUp.viewmodel.SignUpViewModel
+import com.example.fitee.dto.SignUpModel
+import com.example.fitee.viewmodel.SignUpViewModel
 
 class SignUpFragment : Fragment() {
 

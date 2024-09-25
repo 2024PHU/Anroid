@@ -1,4 +1,4 @@
-package com.example.fitee.signUp.model
+package com.example.fitee.dto
 
 data class SignUpModel (
     val email : String,
